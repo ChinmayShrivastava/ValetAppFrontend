@@ -1,5 +1,5 @@
 type NoteInfo = {
-    id: number,
+    id: number | string,
     content: string,
     topics: string,
 }

@@ -3,15 +3,18 @@
 import '../app/globals.css';
 import DocumentCard from '@/components/documentcard';
 import { useEffect , useState } from 'react';
+import { resetDocuments , setDocuments , addDocument , removeDocumentById , updateDocumentById } from '@/redux/features/documents-slice';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/redux/store';
+import { useAppSelector } from '@/redux/store';
+import Link from 'next/link';
 
 function Documentscontainer() {
     
-    const [client, setClient] = useState(false);
     const [navigator, setNavigator] = useState(['documents']);
 
-    useEffect(() => {
-        setClient(true);
-    }, []);
+    const dispatch = useDispatch<AppDispatch>();
+    const documents = useAppSelector((state) => state.documentsReducer.value.documents);
 
     useEffect(() => {
         setNavigator(['documents']);
@@ -28,7 +31,15 @@ function Documentscontainer() {
                 )}
             </div>
             <div className="flex flex-row justify-start w-full flex-wrap px-4">
-                <DocumentCard documentInfo={{
+                {documents.map((item, index) => {
+                    return (
+                        <Link href={'/documents/'+item.id} key={index}>
+                            <DocumentCard key={index} documentInfo={item}/>
+                        </Link>
+                    )
+                }
+                )}
+                {/* <DocumentCard documentInfo={{
                     id: 1,
                     type: 'pdf',
                     title: 'My Document',
@@ -67,7 +78,7 @@ function Documentscontainer() {
                     dateadded: '2021-07-01',
                     datemodified: '2021-07-01',
                     totalnotes: 0,
-                }}/>
+                }}/> */}
             </div>
         </div>
     )

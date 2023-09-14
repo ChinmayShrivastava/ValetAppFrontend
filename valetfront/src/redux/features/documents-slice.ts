@@ -26,7 +26,7 @@ const initialState = {
     } as Documents
 } as InitialState;
 
-export const document = createSlice({
+export const documents = createSlice({
     name: 'documents',
     initialState,
     reducers: {
@@ -75,5 +75,5 @@ export const document = createSlice({
     }
 });
 
-export const { resetDocuments, setDocuments, addDocument, removeDocumentById, updateDocumentById } = document.actions;
-export default document.reducer;
+export const { resetDocuments, setDocuments, addDocument, removeDocumentById, updateDocumentById } = documents.actions;
+export default documents.reducer;

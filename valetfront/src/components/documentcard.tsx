@@ -3,7 +3,7 @@
 import { type } from "os"
 
 type DocumentInfo = {
-    id: number,
+    id: number | string,
     type: string,
     title: string,
     url: string,
