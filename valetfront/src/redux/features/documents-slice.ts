@@ -11,13 +11,13 @@ type Documents = {
 
 type DocumentState = {
     id: string,
-    type: string,
-    title: string,
-    url: string,
-    subdocs: number,
-    dateadded: string,
-    datemodified: string,
-    totalnotes: number,
+    type?: string,
+    name: string,
+    url?: string,
+    subdocs?: number,
+    dateadded?: string,
+    datemodified?: string,
+    totalnotes?: number,
 }
 
 const initialState = {
@@ -33,19 +33,22 @@ export const documents = createSlice({
         resetDocuments: () => {
             return initialState;
         },
-        setDocuments: () => {
-            // TODO: call API to get documents
-            return initialState; // For now, just return the initial state
+        setDocuments: (state, action: PayloadAction<Documents>) => {
+            // action.payload is of the type list of DocumentState [{}, {}, {}]
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    documents: action.payload.documents
+                }
+            }
         },
         addDocument: (state, action: PayloadAction<DocumentState>) => {
             return {
                 ...state,
                 value: {
                     ...state.value,
-                    documents: [
-                        ...state.value.documents,
-                        action.payload
-                    ]
+                    documents: [...state.value.documents, action.payload]
                 }
             }
         },

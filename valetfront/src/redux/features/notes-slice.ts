@@ -40,9 +40,14 @@ export const notes = createSlice({
         resetNotes: () => {
             return initialState;
         },
-        setNotes: () => {
-            // TODO: call API to get notes
-            return initialState; // For now, just return the initial state
+        setNotes: (state, action) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    notes: action.payload.notes
+                }
+            }
         },
         addNote: (state, action: PayloadAction<NoteState>) => {
             return {

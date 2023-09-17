@@ -1,3 +1,5 @@
+'use client'
+
 import APIURL from '../../config';
 import { getCSRFToken } from './getcsrf';
 
@@ -5,8 +7,9 @@ export const checkAuthAPI = async () => {
     const response = await fetch(`${APIURL}/check_login`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'content-type': 'application/json',
+            'accept': 'application/json',
+            // 'access-control-allow-origin': 'http://127.0.0.1:3000'
         },
         credentials: 'include',
         mode: 'cors'
@@ -24,9 +27,13 @@ export const loginAPI = async (email: string, password: string) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken
+            'X-CSRFToken': csrftoken,
+            // 'Access-Control-Allow-Origin': 'http://localhost:3000'
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ 
+            email: email,
+            password: password
+         }),
         credentials: 'include',
         mode: 'cors'
     });

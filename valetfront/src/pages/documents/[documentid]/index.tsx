@@ -10,7 +10,9 @@ export default function Document() {
 
   const [isclient, setisclient] = useState(false);
   const router = useRouter();
-  const { documentid } = router.query;
+  // url is /documents/[documentid]?name=[documentname]&id=[documentid]
+  const documentname = router.query.name;
+  const documentid = router.query.id;
 
   useEffect(() => {
     setisclient(true);
@@ -21,7 +23,7 @@ export default function Document() {
       { isclient &&
       <RootLayout>
         <Sidebar>
-          <NotesContainer documentid={documentid} />
+          <NotesContainer documentid={documentid} documentname={documentname} />
           {/* {documentid} */}
         </Sidebar>
       </RootLayout>}

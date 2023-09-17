@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { useAppSelector } from '@/redux/store';
 import { checkAuthAPI , loginAPI } from '@/functions/auth';
-import { useEffect } from 'react';
+import { use, useEffect } from 'react';
 
 export default function LoginBox() {
 
@@ -27,6 +27,12 @@ export default function LoginBox() {
             }
         });
     }, []);
+
+    useEffect(() => {
+        if (auth.isLogged) {
+            window.location.href = '/?auth=1';
+        }
+    }, [auth.isLogged]);
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();

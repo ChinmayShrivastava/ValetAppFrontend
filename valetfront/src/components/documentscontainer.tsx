@@ -2,12 +2,15 @@
 
 import '../app/globals.css';
 import DocumentCard from '@/components/documentcard';
-import { useEffect , useState } from 'react';
+import { use, useEffect , useState } from 'react';
 import { resetDocuments , setDocuments , addDocument , removeDocumentById , updateDocumentById } from '@/redux/features/documents-slice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { useAppSelector } from '@/redux/store';
 import Link from 'next/link';
+import { checkAuthAPI } from '@/functions/auth';
+import { login } from '@/redux/features/auth-slice';
+import { getUserDocsAPI } from '@/functions/content';
 
 function Documentscontainer() {
     
@@ -15,11 +18,32 @@ function Documentscontainer() {
 
     const dispatch = useDispatch<AppDispatch>();
     const documents = useAppSelector((state) => state.documentsReducer.value.documents);
+    const auth = useAppSelector((state) => state.authReducer.value);
 
     useEffect(() => {
+
         setNavigator(['documents']);
+
+        checkAuthAPI().then((res) => {
+          if (res) {
+              dispatch(login());
+          }
+          else {
+              window.location.href = '/login';
+          }
+        });
+
+        getUserDocsAPI().then((res) => {
+            const docs = {
+                documents: res,
+            }
+            dispatch(setDocuments(docs));
+        }
+        );
+
     }, []);
 
+    if (auth.isLogged) {
     return (
         <div className="flex flex-col items-left justify-start w-full">
             <div className="flex flex-row pt-6 pl-8">
@@ -33,7 +57,8 @@ function Documentscontainer() {
             <div className="flex flex-row justify-start w-full flex-wrap px-4">
                 {documents.map((item, index) => {
                     return (
-                        <Link href={'/documents/'+item.id} key={index}>
+                        // send the title and if in the url with key
+                        <Link href={'/documents/notes'+'?name='+item.name+'&id='+item.id} key={index}>
                             <DocumentCard key={index} documentInfo={item}/>
                         </Link>
                     )
@@ -83,5 +108,11 @@ function Documentscontainer() {
         </div>
     )
     }
+    else {
+        return (
+            <div></div>
+        )
+    }
+}
 
 export default Documentscontainer;
