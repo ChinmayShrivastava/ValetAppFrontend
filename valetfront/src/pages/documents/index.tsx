@@ -21,7 +21,11 @@ export default function Documents() {
         { isclient &&
           <RootLayout>
             <Sidebar>
-              <Documentscontainer />
+              <div className="flex flex-col items-center justify-center w-full">
+                <div className="w-4/5 drop-shadow-lg">
+                  <Documentscontainer />
+                </div>
+              </div>
             </Sidebar>
         </RootLayout>}
       </main>

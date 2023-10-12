@@ -43,8 +43,10 @@ function Home() {
         { auth &&
           <RootLayout>
             <Sidebar>
-              <div className="flex flex-col items-center justify-center w-full">
+              <div className="flex flex-col items-center justify-center w-full h-screen">
+                <div className="w-3/4 drop-shadow-lg">
                   <NewNote />
+                </div>
               </div>
             </Sidebar>
         </RootLayout>}

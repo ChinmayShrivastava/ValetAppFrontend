@@ -40,7 +40,64 @@ export const getDocContentAPI = async (docId: string | string[]) => {
     }
 }
 
+export const submitNoteAPI = async (docId: string | string[], text: string, topics: string, doctitle: string, doctype: string, url: string, title: string) => {
+    console.log(docId, text, topics, doctitle, doctype, url);
+    const csrftoken = await getCSRFToken();
+    const response = await fetch(`${APIURL}/create_note/`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify({
+            document: docId,
+            text: text,
+            topics: topics,
+            doctitle: doctitle,
+            doctype: doctype,
+            url: url,
+            title: title
+        })
+    });
+    if (response.status === 200) {
+        const data = await response.json();
+        return [true, data];
+    }
+    else {
+        return [false, null];
+    }
+}
+
+export const deleteDocAPI = async (docId: string | string[]) => {
+    const csrftoken = await getCSRFToken();
+    const response = await fetch(`${APIURL}/delete_document/`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify({
+            document: docId
+        })
+    });
+    if (response.status === 200) {
+        const data = await response;
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 export default {
     getUserDocsAPI,
-    getDocContentAPI
+    getDocContentAPI,
+    submitNoteAPI,
+    deleteDocAPI
 }

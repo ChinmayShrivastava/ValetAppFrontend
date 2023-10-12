@@ -45,7 +45,7 @@ function Documentscontainer() {
 
     if (auth.isLogged) {
     return (
-        <div className="flex flex-col items-left justify-start w-full">
+        <div className="flex flex-col items-left justify-start w-full pb-32">
             <div className="flex flex-row pt-6 pl-8">
                 {navigator.map((item, index) => {
                     return (
@@ -58,9 +58,9 @@ function Documentscontainer() {
                 {documents.map((item, index) => {
                     return (
                         // send the title and if in the url with key
-                        <Link href={'/documents/notes'+'?name='+item.name+'&id='+item.id} key={index}>
-                            <DocumentCard key={index} documentInfo={item}/>
-                        </Link>
+                        // <Link href={'/documents/notes'+'?name='+item.name+'&id='+item.id} key={index}>
+                        <DocumentCard key={index} documentInfo={item}/>
+                        // </Link>
                     )
                 }
                 )}

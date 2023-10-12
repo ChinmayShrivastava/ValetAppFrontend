@@ -1,4 +1,5 @@
-import { createSlice , PayloadAction } from '@reduxjs/toolkit';
+import { createSlice , PayloadAction , createAsyncThunk } from '@reduxjs/toolkit';
+import { submitNoteAPI } from '@/functions/content';
 
 type InitialState = {
     value: NoteState
@@ -6,6 +7,8 @@ type InitialState = {
 
 type NoteState = {
     type: string,
+    docid: string,
+    doctitle: string,
     title: string,
     url: string,
     content: string,
@@ -15,10 +18,12 @@ type NoteState = {
 const initialState = {
     value: {
         type: 'Article',
-        title: '',
+        docid: '',
+        doctitle: '',
         url: '',
+        title: '',
         content: '',
-        topics: '',
+        topics: ''
     } as NoteState
 } as InitialState;
 
@@ -38,12 +43,30 @@ export const note = createSlice({
                 }
             }
         },
+        setDocId: (state, action: PayloadAction<string>) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    docid: action.payload
+                }
+            }
+        },
         setTitle: (state, action: PayloadAction<string>) => {
             return {
                 ...state,
                 value: {
                     ...state.value,
                     title: action.payload
+                }
+            }
+        },
+        setDocTitle: (state, action: PayloadAction<string>) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    doctitle: action.payload
                 }
             }
         },
@@ -74,12 +97,18 @@ export const note = createSlice({
                 }
             }
         },
-        submitNote: () => {
-            // TODO: submit note to backend
-            return initialState;
+        submitNote: (state, action) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    content: '',
+                    title: '',
+                }
+            }
         }
     }
 });
 
-export const { resetNote, setType, setTitle, setUrl, setContent, setTopics, submitNote } = note.actions;
+export const { resetNote, setType, setTitle, setUrl, setContent, setTopics, submitNote , setDocId , setDocTitle } = note.actions;
 export default note.reducer;
