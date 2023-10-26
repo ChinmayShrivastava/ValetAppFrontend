@@ -38,13 +38,13 @@ export default function DocumentCard({
                 <Link href={'/documents/notes'+'?name='+documentInfo.name+'&id='+documentInfo.id}>
                     <h1 className="text-black p-0">{documentInfo.name}</h1>
                 </Link>
-                <div className="flex flex-row justify-between mt-2">
+                <div className="flex flex-row justify-start mt-2">
                     <p className="text-black text-xs">notes: {documentInfo.totalnotes ? documentInfo.totalnotes : 0}</p>
-                    <p className="text-black text-xs">sub-docs: {documentInfo.subdocs ? documentInfo.subdocs : 0}</p>
+                    {/* <p className="text-black text-xs">sub-docs: {documentInfo.subdocs ? documentInfo.subdocs : 0}</p> */}
                 </div>
                 <div className="flex flex-row justify-between mt-2 w-full">
-                    <button className="text-gray-700 text-xs hover:text-black" onClick={handleDelete}>delete</button>
-                    <Link href={'/'+'?name='+documentInfo.name+'&id='+documentInfo.id+'&type='+documentInfo.type+'&url='+documentInfo.url} className="text-gray-700 hover:text-black text-xs">
+                    <button className="text-gray-700 text-xs hover:text-black bg-gray-300 rounded-md p-[2px]" onClick={handleDelete}>delete</button>
+                    <Link href={'/'+'?name='+documentInfo.name+'&id='+documentInfo.id+'&type='+documentInfo.type+'&url='+documentInfo.url} className="text-gray-700 hover:text-black text-xs bg-gray-300 rounded-md p-[2px]">
                         add note
                     </Link>
                 </div>

@@ -9,7 +9,7 @@ import Chat from '@/components/chat';
 export default function Document() {
 
   const [isclient, setisclient] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(() => {
     setisclient(true);
@@ -23,7 +23,7 @@ export default function Document() {
         <Sidebar>
           <div className="flex flex-col items-center justify-center w-full">
             <div className="w-4/5 drop-shadow-lg">
-              <div className='h-screen'>
+              <div className='h-screen p-6'>
                 <Chat />
               </div>
             </div>

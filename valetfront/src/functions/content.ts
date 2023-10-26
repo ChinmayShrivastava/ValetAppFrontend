@@ -95,9 +95,53 @@ export const deleteDocAPI = async (docId: string | string[]) => {
     }
 }
 
+export const askvectorquestionAPI = async (question: string) => {
+    const csrftoken = await getCSRFToken();
+    const response = await fetch(`${APIURL}/answer_vector/`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify({
+            question: question
+        })
+    });
+    if (response.status === 200) {
+        const data = await response.json();
+        return data;
+    }
+}
+
+export const askgraphquestionAPI = async (question: string) => {
+    const csrftoken = await getCSRFToken();
+    const response = await fetch(`${APIURL}/answer_graph/`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        credentials: 'include',
+        mode: 'cors',
+        body: JSON.stringify({
+            question: question
+        })
+    });
+    if (response.status === 200) {
+        const data = await response.json();
+        return data;
+    }
+}
+
 export default {
     getUserDocsAPI,
     getDocContentAPI,
     submitNoteAPI,
-    deleteDocAPI
+    deleteDocAPI,
+    askvectorquestionAPI,
+    askgraphquestionAPI
 }

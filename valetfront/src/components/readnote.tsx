@@ -4,6 +4,7 @@ import { setType , setUrl , setTopics} from '@/redux/features/note-slice';
 interface NoteInfo {
     topics: string,
     content: string,
+    title: string,
 }
 
 export default function ReadNote({ noteInfo }: { noteInfo: NoteInfo }) {
@@ -25,6 +26,9 @@ export default function ReadNote({ noteInfo }: { noteInfo: NoteInfo }) {
             {/* <div className='px-4 py-2 font-bold text-black'>
                 {noteInfo.title}
             </div> */}
+            <div className='px-4 py-2 text-black font-bold'>
+                {noteInfo.title}
+            </div>
             <div className='px-4 py-2 text-black'>
                 {noteInfo.content}
             </div>
