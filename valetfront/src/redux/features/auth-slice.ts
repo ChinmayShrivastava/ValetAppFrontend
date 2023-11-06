@@ -5,6 +5,10 @@ type InitialState = {
         isLogged: boolean,
         email: string,
         password: string,
+        confirmpassword: string,
+        firstName: string,
+        lastName: string,
+        isRegistered: boolean,
     }
 }
 
@@ -12,7 +16,11 @@ const initialState = {
     value: {
         isLogged: false,
         email: '',
-        password: ''
+        password: '',
+        confirmpassword: '',
+        firstName: '',
+        lastName: '',
+        isRegistered: false,
     }
 } as InitialState;
 
@@ -55,9 +63,45 @@ export const auth = createSlice({
                     password: action.payload
                 }
             }
+        },
+        setConfirmPassword: (state, action: PayloadAction<string>) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    confirmpassword: action.payload
+                }
+            }
+        },
+        setFirstName: (state, action: PayloadAction<string>) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    firstName: action.payload
+                }
+            }
+        },
+        setLastName: (state, action: PayloadAction<string>) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    lastName: action.payload
+                }
+            }
+        },
+        register: (state) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    isRegistered: true
+                }
+            }
         }
     }
 });
 
-export const { login, logout , setEmail , setPassword } = auth.actions;
+export const { login, logout , setEmail , setPassword , setConfirmPassword , setFirstName , setLastName , register } = auth.actions;
 export default auth.reducer;

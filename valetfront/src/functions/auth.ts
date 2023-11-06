@@ -60,8 +60,34 @@ export const logoutAPI = async () => {
     }
 }
 
+export const registerAPI = async (email: string, password: string, firstName: string, lastName: string) => {
+    const csrftoken = await getCSRFToken();
+    const response = await fetch(`${APIURL}/register/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+            // 'Access-Control-Allow-Origin': 'http://localhost:3000'
+        },
+        body: JSON.stringify({ 
+            email: email,
+            password: password,
+            first_name: firstName,
+            last_name: lastName
+         }),
+        credentials: 'include',
+        mode: 'cors'
+    });
+    if (response.status === 200) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 export default {
     checkAuthAPI,
     loginAPI,
-    logoutAPI
+    logoutAPI,
+    registerAPI
 }

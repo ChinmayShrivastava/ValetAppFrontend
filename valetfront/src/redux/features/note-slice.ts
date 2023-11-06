@@ -98,6 +98,11 @@ export const note = createSlice({
             }
         },
         submitNote: (state, action) => {
+            // if content is empty, return
+            if (state.value.content === '' && state.value.title === '') {
+                alert('Please enter content or title');
+                return;
+            }
             return {
                 ...state,
                 value: {
