@@ -9,6 +9,8 @@ type InitialState = {
         firstName: string,
         lastName: string,
         isRegistered: boolean,
+        loginloading: boolean,
+        registerloading: boolean,
     }
 }
 
@@ -21,6 +23,8 @@ const initialState = {
         firstName: '',
         lastName: '',
         isRegistered: false,
+        loginloading: false,
+        registerloading: false,
     }
 } as InitialState;
 
@@ -99,7 +103,25 @@ export const auth = createSlice({
                     isRegistered: true
                 }
             }
-        }
+        },
+        loginloading: (state) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    loginloading: true
+                }
+            }
+        },
+        registerloading: (state) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    registerloading: true
+                }
+            }
+        },
     }
 });
 
