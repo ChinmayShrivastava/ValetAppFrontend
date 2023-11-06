@@ -1,3 +1,3 @@
-const APIURL = 'http://127.0.0.1:8000/noteshandler';
+const APIURL = 'https://valetbackend-9e1850470717.herokuapp.com/noteshandler';
 
 export default APIURL;
