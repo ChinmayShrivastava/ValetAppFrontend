@@ -18,7 +18,8 @@ type Notes = {
 type NoteState = {
     id: string,
     content: string,
-    topics: string
+    topics: string,
+    title: string,
 }
 
 const initialState = {

@@ -5,9 +5,10 @@ import { resetNote , setType , setTitle , setDocTitle , setUrl , setContent , se
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { useAppSelector } from '@/redux/store';
-import { Link } from 'react-router-dom';
 import { submitNoteAPI } from '@/functions/content';
 import { useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const cols = 30;
 const rows = 10;
@@ -48,7 +49,7 @@ export default function NewNote() {
             dispatch(setType(type_.toString()));
         }
 
-    }, []);
+    });
 
     useEffect(() => {
 
@@ -56,7 +57,7 @@ export default function NewNote() {
             dispatch(setTopics(doctitle));
         }
 
-    }, [type, doctitle]);
+    }, [type, doctitle, dispatch]);
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -160,13 +161,13 @@ export default function NewNote() {
                     </div>
                     <div className='flex flex-row justify-start'>
                         <button type="submit" onClick={handleSubmit} >
-                            <img className="h-8 w-8 rounded-full ml-2" src="submit.png" alt="" />
+                            <Image className="h-8 w-8 rounded-full ml-2" src="submit.png" alt="" />
                         </button>
                         <button onClick={handleDiscard} >
-                            <img className="h-8 w-8 rounded-full ml-2" src="discard.png" alt="" />
+                            <Image className="h-8 w-8 rounded-full ml-2" src="discard.png" alt="" />
                         </button>
                         <button onClick={handleRecord} >
-                            <img className="h-8 w-auto rounded-full ml-2" src="record.png" alt="" />
+                            <Image className="h-8 w-auto rounded-full ml-2" src="record.png" alt="" />
                         </button>
                     </div>
                 </div>
@@ -179,7 +180,7 @@ export default function NewNote() {
                         <label htmlFor="topics" className='text-sm text-[#9D9D9D]'>Related Topics:</label>
                         <input type="text" name="topics" id="topics" className='bg-white w-full text-black border-[0.25px] border-black p-2 rounded-md mt-4' onChange={(e) => dispatch(setTopics(e.target.value))} value={topics} />
                         <button type="submit" onClick={handleOverlayCancel} >
-                            <img className="h-6 w-6 rounded-full mt-4" src="submit.png" alt="" />
+                            <Image className="h-6 w-6 rounded-full mt-4" src="submit.png" alt="" />
                         </button>
                     </div>
                 </div>
@@ -190,9 +191,9 @@ export default function NewNote() {
                 <div className="drop-shadow-md">
                     <div className='flex flex-col justify-start p-8 bg-[#FAFAFA] rounded-lg'>
                         {/* take to /documents */}
-                        <a href='/documents' className='text-sm text-[#9D9D9D] cursor-pointer hover:text-black mt-2'>
+                        <Link href='/documents' className='text-sm text-[#9D9D9D] cursor-pointer hover:text-black mt-2'>
                             Select an old Document!
-                        </a>
+                        </Link>
                         <label htmlFor="documents" className='text-sm text-[#9D9D9D]'> Or add a new Document:</label>
                         {/* {documents.split(',').map((document: string) => {
                             return (
@@ -231,7 +232,7 @@ export default function NewNote() {
                             <input type="text" name="url" id="url" className='w-full text-black my-2' value={url} onChange={(e) => dispatch(setUrl(e.target.value))} placeholder='url'/>
                             {/* submit button */}
                             <button type="submit" onClick={handleDocumentOptionsCancel} >
-                                <img className="h-6 w-6 rounded-full" src="submit.png" alt="" />
+                                <Image className="h-6 w-6 rounded-full" src="submit.png" alt="" />
                             </button>
                         </div>
                     </div>

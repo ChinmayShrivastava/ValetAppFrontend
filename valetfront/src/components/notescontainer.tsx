@@ -61,7 +61,7 @@ function Notescontainer({ documentid , documentname }: DocumentProps) {
           }
         });
 
-    }, [documentid]);
+    }, [documentid, dispatch]);
 
     useEffect(() => {
         if ( auth.isLogged && documentid ) {
@@ -72,7 +72,7 @@ function Notescontainer({ documentid , documentname }: DocumentProps) {
                 dispatch(setNotes(notes_));
             });
         }
-    }, [documentid, auth]);
+    }, [documentid, auth, dispatch]);
 
     const handleNoteClick = (id: idType) => {
         setSelectednoteid(id);

@@ -36,7 +36,7 @@ function Home() {
               }
           });
         }
-    }, []);
+    });
 
     return (
       <main className="flex flex-col">

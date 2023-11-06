@@ -27,7 +27,7 @@ export default function LoginBox() {
                 dispatch(login());
             }
         });
-    }, []);
+    });
 
     useEffect(() => {
         if (auth.isLogged) {

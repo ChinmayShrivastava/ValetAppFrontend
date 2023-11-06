@@ -41,7 +41,7 @@ function Documentscontainer() {
         }
         );
 
-    }, []);
+    }, [dispatch]);
 
     if (auth.isLogged) {
     return (
