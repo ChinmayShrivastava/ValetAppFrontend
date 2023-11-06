@@ -125,5 +125,5 @@ export const auth = createSlice({
     }
 });
 
-export const { login, logout , setEmail , setPassword , setConfirmPassword , setFirstName , setLastName , register } = auth.actions;
+export const { login, logout , setEmail , setPassword , setConfirmPassword , setFirstName , setLastName , register , registerloading , loginloading } = auth.actions;
 export default auth.reducer;
