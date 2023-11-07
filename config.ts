@@ -1,3 +1,3 @@
-const APIURL = 'https://api.valetnotes.com/noteshandler';
+const APIURL = 'http://127.0.0.1:8000/noteshandler';
 
 export default APIURL;

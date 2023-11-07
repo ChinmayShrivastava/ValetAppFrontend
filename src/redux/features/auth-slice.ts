@@ -113,6 +113,15 @@ export const auth = createSlice({
                 }
             }
         },
+        loginloadingoff: (state) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    loginloading: false
+                }
+            }
+        },
         registerloading: (state) => {
             return {
                 ...state,
@@ -122,8 +131,17 @@ export const auth = createSlice({
                 }
             }
         },
+        registerloadingoff: (state) => {
+            return {
+                ...state,
+                value: {
+                    ...state.value,
+                    registerloading: false
+                }
+            }
+        },
     }
 });
 
-export const { login, logout , setEmail , setPassword , setConfirmPassword , setFirstName , setLastName , register , registerloading , loginloading } = auth.actions;
+export const { login, logout , setEmail , setPassword , setConfirmPassword , setFirstName , setLastName , register , registerloading , loginloading , registerloadingoff , loginloadingoff } = auth.actions;
 export default auth.reducer;

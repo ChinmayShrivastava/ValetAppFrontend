@@ -1,6 +1,6 @@
 'use client'
 
-import { login , setEmail , setPassword , loginloading } from '@/redux/features/auth-slice';
+import { login , setEmail , setPassword , loginloading , loginloadingoff } from '@/redux/features/auth-slice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { useAppSelector } from '@/redux/store';
@@ -42,6 +42,9 @@ export default function LoginBox() {
             if (res) {
                 dispatch(login());
             }
+            else {
+                dispatch(loginloadingoff());
+            }
         });
     }
 
@@ -76,8 +79,8 @@ export default function LoginBox() {
                             <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                         </div> */}
                         <button type="submit" className={
-                            "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" + 
-                            auth.loginloading ? " pointer-events-none opacity-50" : ""
+                            "w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" + 
+                            (auth.loginloading ? " pointer-events-none opacity-50" : "")
                             } onClick={handleSubmit} >Sign in</button>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                             Don’t have an account yet? <Link href="/signup" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
