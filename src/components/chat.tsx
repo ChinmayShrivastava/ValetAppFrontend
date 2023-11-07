@@ -53,7 +53,7 @@ export default function Chat() {
         setMessageQueue((prevMessageQueue) => [...prevMessageQueue, {from: 'valet', message: 'loading', type: 'status'}]);
 
         // send the message to the backend
-        askvectorquestionAPI(message).then((response) => {
+        askgraphquestionAPI(message).then((response) => {
             // change the loading status to success
             setMessageQueue((prevMessageQueue) => [...prevMessageQueue.slice(0, -1), {from: 'valet', message: 'success', type: 'status'}]);
             // add the response to the message queue
