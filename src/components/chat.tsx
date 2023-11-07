@@ -3,7 +3,12 @@
 import { useEffect, useState } from 'react';
 import Documentscontainer from './documentscontainer';
 import { askvectorquestionAPI , askgraphquestionAPI } from '@/functions/content';
-import Markdown from 'react-markdown'
+import Markdown from 'react-markdown';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/redux/store';
+import { useAppSelector } from '@/redux/store';
+import { checkAuthAPI } from '@/functions/auth';
+import { login } from '@/redux/features/auth-slice';
 
 interface Message {
   from: string;
@@ -22,6 +27,21 @@ export default function Chat() {
         // {from: 'valet', message: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam eget aliquam ultricies, nisl nunc ultricies nunc, vitae ultrices nisl nunc eu nisl. Sed euismod, diam eget aliquam ultricies, nisl nunc ultricies nunc, vitae ultrices nisl nunc eu nisl.', type: 'response'},
         // {from: 'valet', message: 'Hi', type: 'notes'},
     ]);
+    const auth = useAppSelector((state) => state.authReducer.value);
+    const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+
+        checkAuthAPI().then((res) => {
+          if (res) {
+              dispatch(login());
+          }
+          else {
+              window.location.href = '/login';
+          }
+        });
+
+    }, [dispatch]);
 
     const handleClick = (e: any) => {
         e.preventDefault();
@@ -42,6 +62,7 @@ export default function Chat() {
     }
 
     return (
+        <>{ auth.isLogged &&
         <div className='flex flex-col space-between h-full p-2'>
             <div className='h-full bg-gray-200 mb-2 overflow-scroll p-4 rounded-md'>
                 {messagequeue.map((message, index) => (
@@ -93,5 +114,6 @@ export default function Chat() {
                 <button className='bg-blue-500 ml-2 p-2 text-white' onClick={e => handleClick(e)}>Send</button>
             </form>
         </div>
+        }</>
     )
 }
