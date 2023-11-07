@@ -111,7 +111,7 @@ export default function Chat() {
             </div>
             <form className='flex flex-row space-between bg-white rounded-2xl p-2'>
                 <input className='focus:border-transparent w-full text-black' type="text" value={message} onChange={e => setMessage(e.target.value)} />
-                <button className='bg-blue-500 ml-2 p-2 text-white' onClick={e => handleClick(e)}>Send</button>
+                <button className='bg-blue-500 ml-2 p-2 text-white rounded-md' onClick={e => handleClick(e)}>Send</button>
             </form>
         </div>
         }</>
