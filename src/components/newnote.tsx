@@ -49,7 +49,7 @@ export default function NewNote() {
             dispatch(setType(type_.toString()));
         }
 
-    });
+    }, [dispatch]);
 
     useEffect(() => {
 
@@ -161,13 +161,13 @@ export default function NewNote() {
                     </div>
                     <div className='flex flex-row justify-start'>
                         <button type="submit" onClick={handleSubmit} >
-                            <Image className="h-8 w-8 rounded-full ml-2" src="submit.png" alt="" />
+                            <Image className="h-8 w-8 rounded-full ml-2" src="/submit.png" width={32} height={32} alt="" />
                         </button>
                         <button onClick={handleDiscard} >
-                            <Image className="h-8 w-8 rounded-full ml-2" src="discard.png" alt="" />
+                            <Image className="h-8 w-8 rounded-full ml-2" src="/discard.png" width={32} height={32} alt="" />
                         </button>
                         <button onClick={handleRecord} >
-                            <Image className="h-8 w-auto rounded-full ml-2" src="record.png" alt="" />
+                            <Image className="h-8 w-auto rounded-full ml-2" src="/record.png" width={32} height={32} alt="" />
                         </button>
                     </div>
                 </div>
