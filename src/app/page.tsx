@@ -46,9 +46,9 @@ function Home() {
             <Sidebar>
               <div className="flex flex-col items-center justify-center w-full h-screen">
                 <UploadNotes />
-                <div className="w-3/4 drop-shadow-lg">
+                {/* <div className="w-3/4 drop-shadow-lg">
                   <NewNote />
-                </div>
+                </div> */}
               </div>
             </Sidebar>
         </RootLayout>}
