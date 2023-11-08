@@ -8,7 +8,7 @@ export default function UploadNotes() {
     const [notes, setNotes] = useState('');
     const [status, setStatus] = useState('Dump your notes here and we’ll organize them for you for better retrieval.');
 
-    const handleNotesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleNotesChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setNotes(event.target.value);
         setStatus('Dump your notes here and we’ll organize them for you for better retrieval.');
     }
@@ -32,8 +32,9 @@ export default function UploadNotes() {
     return (
         <div className="mb-2">
             <p className="text-black">{status}</p>
-            <input className="text-black w-3/5 p-2 rounded-md mr-2" type="text" value={notes} onChange={handleNotesChange} />
-            <button className="text-white bg-blue-500 rounded-md p-2" type="submit" onClick={handleNotesSubmit}>Submit</button>
-        </div>
+                <textarea cols={30} rows={10} className="text-black w-3/5 p-2 rounded-md mr-2" onChange={(e) => handleNotesChange(e)} value={notes} placeholder='note' />
+                <button className="text-white bg-blue-500 rounded-md p-2" type="submit" onClick={handleNotesSubmit}>Submit</button>
+            </div>
     )
 }
+
