@@ -9,6 +9,7 @@ import { useAppSelector } from '@/redux/store';
 import { checkAuthAPI } from '@/functions/auth';
 import { useEffect } from 'react';
 import { login } from '@/redux/features/auth-slice';
+import UploadNotes from '@/components/uploadnotes';
 
 function Home() {
 
@@ -44,6 +45,7 @@ function Home() {
           <RootLayout>
             <Sidebar>
               <div className="flex flex-col items-center justify-center w-full h-screen">
+                <UploadNotes />
                 <div className="w-3/4 drop-shadow-lg">
                   <NewNote />
                 </div>
