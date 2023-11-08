@@ -2,8 +2,10 @@ import Link from 'next/link'
 
 export default function Sidebar({
     children,
+    navigation
 }: {
-    children: React.ReactNode
+    children: React.ReactNode,
+    navigation: any
 }) {
   return (
     <div>
@@ -23,11 +25,11 @@ export default function Sidebar({
                       </div>
                   </li>
                   <li>
-                      <Link href="/" className="flex items-center p-2 text-gray-900 rounded-lg bg-[#0085FF] hover:bg-[#0061BA] group">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" className="w-6 h-6">
+                      <Link href="/" className="flex items-center p-2 text-gray-900 rounded-lg group">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" className="w-6 h-6">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <span className="flex-1 ml-3 whitespace-nowrap text-white">New Note</span>
+                        <span className="flex-1 ml-3 whitespace-nowrap text-black">New Note</span>
                       </Link>
                   </li>
                   <li>
