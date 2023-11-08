@@ -1,11 +1,9 @@
 import Link from 'next/link'
 
 export default function Sidebar({
-    children,
-    navigation
+    children
 }: {
-    children: React.ReactNode,
-    navigation: any
+    children: React.ReactNode
 }) {
   return (
     <div>
