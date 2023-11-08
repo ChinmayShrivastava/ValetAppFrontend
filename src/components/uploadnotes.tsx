@@ -30,11 +30,12 @@ export default function UploadNotes() {
     }
 
     return (
-        <div className="mb-2">
-            <p className="text-black">{status}</p>
-                <textarea cols={30} rows={10} className="text-black w-3/5 p-2 rounded-md mr-2" onChange={(e) => handleNotesChange(e)} value={notes} placeholder='note' />
-                <button className="text-white bg-blue-500 rounded-md p-2" type="submit" onClick={handleNotesSubmit}>Submit</button>
-            </div>
-    )
+        <div className="mb-2 flex flex-col justify-start bg-gray-100 rounded-lg p-4 border-black border-[1px]">
+            <p className="text-black mb-2">{status}</p>
+            <textarea cols={80} rows={10} className="text-black p-2 rounded-md mr-2" onChange={(e) => handleNotesChange(e)} value={notes} placeholder='paste notes here; if possible, separate each note by double line breaks' />
+            { status==='Uploading notes...' ? null :   
+            <button className="text-white bg-blue-500 rounded-md p-2 mt-2 w-min" type="submit" onClick={handleNotesSubmit}>Submit</button>}
+        </div>
+)
 }
 
