@@ -12,6 +12,7 @@ import { login } from '@/redux/features/auth-slice';
 
 interface Message {
   from: string;
+//   make message string or list
   message: string;
   type: string;
 }
@@ -61,7 +62,7 @@ export default function Chat() {
             setMessageQueue((prevMessageQueue) => [...prevMessageQueue, {from: 'valet', message: response.answer, type: 'response'}]);
             // add notes to the response if any
             if (response.notes) {
-                setMessageQueue((prevMessageQueue) => [...prevMessageQueue, {from: 'valet', message: response.notes, type: 'notes'}]);
+                setMessageQueue((prevMessageQueue) => [...prevMessageQueue, {from: 'valet', message: JSON.stringify(response.notes), type: 'notes'}]);
             }
         });
     }
@@ -108,7 +109,7 @@ export default function Chat() {
                         }
                         { message.from === 'valet' && message.type === 'notes' &&
                         <>
-                        {message.message.map((item: any, index: any) => (
+                        {JSON.parse(message.message).map((item: any, index: any) => (
                             <p className='text-black bg-gray-300 rounded-md p-2 m-2 truncate hover:text-clip hover:whitespace-pre-wrap cursor-pointer' key={index}>{item}</p>
                         ))}
                         </>
