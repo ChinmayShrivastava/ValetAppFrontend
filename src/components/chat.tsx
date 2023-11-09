@@ -54,17 +54,22 @@ export default function Chat() {
 
         // send the message to the backend
         askgraphquestionAPI(message).then((response) => {
+            console.log(response)
             // change the loading status to success
             setMessageQueue((prevMessageQueue) => [...prevMessageQueue.slice(0, -1), {from: 'valet', message: 'success', type: 'status'}]);
             // add the response to the message queue
             setMessageQueue((prevMessageQueue) => [...prevMessageQueue, {from: 'valet', message: response.answer, type: 'response'}]);
+            // add notes to the response if any
+            if (response.notes) {
+                setMessageQueue((prevMessageQueue) => [...prevMessageQueue, {from: 'valet', message: response.notes, type: 'notes'}]);
+            }
         });
     }
 
     return (
         <>{ auth.isLogged &&
         <div className='flex flex-col space-between h-full p-2'>
-            <div className='h-full bg-gray-200 mb-2 overflow-scroll p-4 rounded-md'>
+            <div className='h-full bg-white drop-shadow-lg mb-2 overflow-scroll p-4 rounded-md'>
                 {messagequeue.map((message, index) => (
                     <>
                         { message.from === 'user' && message.type === 'query' &&
@@ -103,7 +108,9 @@ export default function Chat() {
                         }
                         { message.from === 'valet' && message.type === 'notes' &&
                         <>
-                        <Documentscontainer />
+                        {message.message.map((item: any, index: any) => (
+                            <p className='text-black bg-gray-300 rounded-md p-2 m-2 truncate hover:text-clip hover:whitespace-pre-wrap cursor-pointer' key={index}>{item}</p>
+                        ))}
                         </>
                         }
                     </>
